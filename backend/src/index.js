@@ -357,7 +357,14 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-    console.log(`✓ Server running on http://localhost:${PORT}`);
-    console.log(`✓ API available at http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`✓ Server running on http://localhost:${PORT}`);
+//     console.log(`✓ API available at http://localhost:${PORT}`);
+// });
+
+if (process.env.NODE_ENV !== "production") {
+    const PORT = 3000;
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}
