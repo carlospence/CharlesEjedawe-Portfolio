@@ -43,11 +43,11 @@ export default function ProNavigation({ data }) {
     <nav className="fixed top-0 w-full z-50 bg-[#0a0f16]/80 backdrop-blur-md border-b border-[#1e293b]/50">
       <div className="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
         <div className="text-xl font-bold tracking-tighter text-white font-sans flex items-center gap-2">
-          <span className="w-2 h-2 bg-[#4edea3] rounded-full"></span>
+          <span className="w-2 h-2 bg-[#4edea3] rounded-full capitalize"></span>
           {data.name.split(" ").map((part, index) => (
             <span
               key={index}
-              className="bg-clip-text text-white text-transparent bg-gradient-to-r from-[#4edea3] to-[#94a3b8]"
+              className="bg-clip-text text-white text-transparent bg-gradient-to-r from-[#4edea3] to-[#94a3b8] uppercase"
             >
               {part}
             </span>

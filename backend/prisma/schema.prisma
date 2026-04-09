@@ -44,6 +44,26 @@ model Contact {
   id        Int     @id @default(autoincrement())
   name      String
   email     String
+  phone     String?
+  location  String?
   message   String
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Bio {
+  id        Int     @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  location  String
+  title     String
+  bio       String
+  github    String?
+  linkedin  String?
+  facebook  String?
+  twitter   String?
+  tiktok    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

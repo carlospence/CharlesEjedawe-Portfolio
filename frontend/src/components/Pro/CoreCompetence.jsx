@@ -10,7 +10,8 @@ const iconMap = {
 };
 
 export default function CoreCompetence({ data }) {
-  const categories = Object.entries(data).slice(0, 3); // Show first 3 for primary display
+  //   const categories = Object.entries(data).slice(0, 3); // Show first 3 for primary display
+  const categories = Object.entries(data); // Show first 3 for primary display
 
   return (
     <section

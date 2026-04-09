@@ -18,6 +18,64 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'API is running' });
 });
 
+// ==================== BIO ====================
+app.get('/api/bio', async (req, res) => {
+    try {
+        const bio = await prisma.bio.findMany({
+            orderBy: { createdAt: 'desc' }
+        });
+        res.json(bio);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/bio/first', async (req, res) => {
+    try {
+        const bio = await prisma.bio.findFirst({
+            orderBy: { createdAt: 'desc' }
+        });
+        if (!bio) return res.json([]);
+        res.json([bio]);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post('/api/bio', async (req, res) => {
+    try {
+        const bio = await prisma.bio.create({
+            data: req.body
+        });
+        res.status(201).json(bio);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+app.put('/api/bio/:id', async (req, res) => {
+    try {
+        const bio = await prisma.bio.update({
+            where: { id: parseInt(req.params.id) },
+            data: req.body
+        });
+        res.json(bio);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+app.delete('/api/bio/:id', async (req, res) => {
+    try {
+        await prisma.bio.delete({
+            where: { id: parseInt(req.params.id) }
+        });
+        res.json({ message: 'Bio deleted' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 // ==================== PROJECTS ====================
 app.get('/api/projects', async (req, res) => {
     try {
@@ -232,12 +290,25 @@ app.get('/api/contacts/:id', async (req, res) => {
     }
 });
 
+app.get('/api/contact', async (req, res) => {
+    try {
+        const contact = await prisma.contact.findFirst({
+            orderBy: { createdAt: 'desc' }
+        });
+        if (!contact) return res.json([]);
+        res.json([contact]);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.post('/api/contact', async (req, res) => {
     try {
         const contact = await prisma.contact.create({
             data: {
                 name: req.body.name,
                 email: req.body.email,
+                phone: req.body.phone,
                 message: req.body.message
             }
         });

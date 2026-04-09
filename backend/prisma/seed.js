@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 async function main() {
     // Clear existing data
+    await prisma.bio.deleteMany();
     await prisma.contact.deleteMany();
     await prisma.experience.deleteMany();
     await prisma.project.deleteMany();
@@ -48,10 +49,10 @@ async function main() {
         prisma.skill.create({ data: { name: '.NET Framework', category: 'DevOps' } }),
 
         // ML & Data Science
-        prisma.skill.create({ data: { name: 'NumPy', category: 'ML & Data' } }),
-        prisma.skill.create({ data: { name: 'Pandas', category: 'ML & Data' } }),
-        prisma.skill.create({ data: { name: 'PyTorch', category: 'ML & Data' } }),
-        prisma.skill.create({ data: { name: 'Power BI', category: 'ML & Data' } }),
+        prisma.skill.create({ data: { name: 'NumPy', category: 'ML & Data Analysis' } }),
+        prisma.skill.create({ data: { name: 'Pandas', category: 'ML & Data Analysis' } }),
+        prisma.skill.create({ data: { name: 'PyTorch', category: 'ML & Data Analysis' } }),
+        prisma.skill.create({ data: { name: 'Power BI', category: 'ML & Data Analysis' } }),
     ]);
 
     console.log(`✓ Created ${skills.length} skills`);
@@ -60,22 +61,32 @@ async function main() {
     const projects = await Promise.all([
         prisma.project.create({
             data: {
+                name: 'Movie Mafia',
+                description: 'A microservices-based movie discovery platform that helps users find movies and series quickly with ratings, reviews, and personalized recommendations.',
+                techStack: ['JavaScript', 'TypeScript', 'React', 'Express.js', 'PostgreSQL', 'Docker', 'Azure', 'Kubernetes', 'Kafka', 'Redis'],
+                github: 'https://github.com/carlospence/MovieMafia',
+                demo: 'https://mmafia.xyz/',
+                imageUrl: 'movie-mafia.png'
+            }
+        }),
+        prisma.project.create({
+            data: {
                 name: 'Sowinna Platform',
                 description: 'Web platform to track and manage evangelism contacts for religious organizations. Built during COVID-19 to streamline contact management and communication. Features include user authentication, contact tracking and management, bulk SMS, bulk email, and WhatsApp integration.',
-                techStack: ['JavaScript', 'TypeScript', 'React', 'Express.js', 'PostgreSQL'],
+                techStack: ['JavaScript', 'TypeScript', 'React', 'Express.js', 'PostgreSQL', 'C#', 'ASP.NET Core', 'Docker', 'Azure'],
                 github: 'https://github.com/charles-ejedawe/sowinna',
                 demo: 'https://sowinna.com/',
-                imageUrl: 'https://via.placeholder.com/400x300?text=Sowinna+Platform'
+                imageUrl: 'sowinna-platform.png'
             }
         }),
         prisma.project.create({
             data: {
                 name: 'ADRobot Monitor',
                 description: 'Web platform to track uptime status of custom advert monitoring servers for clients. Provides real-time notifications when servers go down within 30 seconds. Features include user authentication, interactive dashboard, SMS alerts, email alerts, in-app notifications, and PIFA integration.',
-                techStack: ['TypeScript', 'React', 'Next.js', 'Node.js', 'Azure'],
+                techStack: ['TypeScript', 'React', 'Next.js', 'Node.js', 'Azure', 'C#', 'ASP.NET Core', 'Docker', 'Azure'],
                 github: 'https://github.com/charles-ejedawe/adrobot-monitor',
                 demo: 'https://admonitor.kaplaas.com/',
-                imageUrl: 'https://via.placeholder.com/400x300?text=ADRobot+Monitor'
+                imageUrl: 'adrobot-monitor.png'
             }
         }),
     ]);
@@ -131,6 +142,36 @@ async function main() {
     ]);
 
     console.log(`✓ Created ${experience.length} experience entries`);
+
+    const contact = await Promise.all([
+        prisma.contact.create({
+            data: {
+                email: "carlospence@gmail.com",
+                phone: "+1 (506) 636-2025",
+                location: "Fredericton, New Brunswick, Canada",
+                name: "Charles Ejedawe",
+                message: "Website Owner Contact Information"
+            }
+        })
+    ]);
+    console.log(`✓ Created ${contact.length} contact entries`);
+
+    // Seed Bio Data
+    const bio = await Promise.all([
+        prisma.bio.create({
+            data: {
+                name: "Charles Ewaifoh Ejedawe",
+                email: "carlospence@gmail.com",
+                phone: "+1 (506) 636-2025",
+                location: "Fredericton, New Brunswick, Canada",
+                title: "Full Stack Developer & Data Analyst",
+                bio: "Faculty of Computer Science Co-op Program | Master's Student at University of New Brunswick. Specializing in scalable web applications, data pipelines, and cloud deployment. Experienced Full Stack Developer with 5+ years building systems that matter.",
+                github: "https://github.com/charles-ejedawe",
+                linkedin: "https://linkedin.com/in/charles-ejedawe"
+            }
+        })
+    ]);
+    console.log(`✓ Created ${bio.length} bio entries`);
 
     console.log('✓ Database seeded successfully!');
 }

@@ -13,18 +13,18 @@ export const portfolioData = {
         "Backend": ["Express.js", "Django", "ASP.NET Core", "ASP.NET", "Node.js"],
         "Database": ["MSSQL", "PostgreSQL", "MySQL", "Redis"],
         "DevOps": ["Docker", "Git", "Azure", "AWS", "GCP", ".NET Framework"],
-        "ML & Data": ["NumPy", "Pandas", "PyTorch", "Power BI"]
+        "ML & Data Analysis": ["NumPy", "Pandas", "PyTorch", "Power BI"]
     },
 
     projects: [
         {
             id: 1,
-            name: "Movie Mafia",
-            description: "Web platform to track and manage evangelism contacts for religious organizations. Built during COVID-19 to streamline contact management and communication.",
-            techStack: ["JavaScript", "TypeScript", "React", "Express.js", "PostgreSQL"],
-            github: "https://github.com/charles-ejedawe/sowinna",
-            demo: "https://moviemafia.xyz/",
-            imageUrl: "movie-mafia.png",
+            name: 'Movie Mafia',
+            description: 'A microservices-based movie discovery platform that helps users find movies and series quickly with ratings, reviews, and personalized recommendations.',
+            techStack: ['JavaScript', 'TypeScript', 'React', 'Express.js', 'PostgreSQL', 'Docker', 'Azure', 'Kubernetes', 'Kafka', 'Redis'],
+            github: 'https://github.com/carlospence/MovieMafia',
+            demo: 'https://mmafia.xyz/',
+            imageUrl: 'movie-mafia.png'
         },
         {
             id: 2,

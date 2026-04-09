@@ -1,6 +1,9 @@
 import React from "react";
 
 export default function Projects({ data }) {
+  const getImageUrl = (name) => {
+    return new URL(`../../assets/images/${name}`, import.meta.url).href;
+  };
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-6xl mx-auto">
@@ -16,7 +19,7 @@ export default function Projects({ data }) {
             >
               <div className="h-48 bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center">
                 <img
-                  src={project.imageUrl}
+                  src={getImageUrl(project.imageUrl)}
                   alt={project.name}
                   className="w-full h-full object-cover"
                 />
