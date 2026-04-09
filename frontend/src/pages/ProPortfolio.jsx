@@ -23,7 +23,7 @@ export default function ProPortfolio() {
         />
       </div>
 
-      <ProNavigation />
+      <ProNavigation data={portfolioData.hero} />
       <div className="relative z-10 pt-20">
         <ProHero data={portfolioData.hero} />
         <CoreCompetence data={portfolioData.skills} />

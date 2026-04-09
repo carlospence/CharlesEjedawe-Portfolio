@@ -1,4 +1,5 @@
 import React from "react";
+import myImage from "../../assets/images/resumephoto.png";
 
 export default function ProHero({ data }) {
   return (
@@ -53,8 +54,9 @@ export default function ProHero({ data }) {
           <div className="aspect-[4/5] rounded-lg overflow-hidden border border-[#1e293b] bg-[#141b24] p-2">
             <img
               alt="Portrait"
+              src={myImage}
               className="w-full h-full object-cover grayscale brightness-75 contrast-125 hover:grayscale-0 transition-all duration-700"
-              src={`https://via.placeholder.com/400x500/1a1f2e/4edea3?text=${encodeURIComponent(data.name)}`}
+              //   src={`https://via.placeholder.com/400x500/1a1f2e/4edea3?text=${encodeURIComponent(data.name)}`}
             />
           </div>
           <div className="absolute -bottom-4 -left-4 bg-[#141b24] p-4 border border-[#4edea3]/30 shadow-[0_0_20px_rgba(78,222,163,0.1)]">

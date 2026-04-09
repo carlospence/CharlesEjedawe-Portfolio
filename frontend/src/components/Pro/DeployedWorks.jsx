@@ -1,6 +1,9 @@
 import React from "react";
 
 export default function DeployedWorks({ data }) {
+  const getImageUrl = (name) => {
+    return new URL(`../../assets/images/${name}`, import.meta.url).href;
+  };
   return (
     <section id="deployed-works" className="py-32 px-8 bg-[#0a0f16]">
       <div className="max-w-7xl mx-auto">
@@ -29,7 +32,7 @@ export default function DeployedWorks({ data }) {
                 <img
                   alt={project.name}
                   className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
-                  src={project.imageUrl}
+                  src={getImageUrl(project.imageUrl)}
                 />
               </div>
               <div>

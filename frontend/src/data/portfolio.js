@@ -19,21 +19,30 @@ export const portfolioData = {
     projects: [
         {
             id: 1,
+            name: "Movie Mafia",
+            description: "Web platform to track and manage evangelism contacts for religious organizations. Built during COVID-19 to streamline contact management and communication.",
+            techStack: ["JavaScript", "TypeScript", "React", "Express.js", "PostgreSQL"],
+            github: "https://github.com/charles-ejedawe/sowinna",
+            demo: "https://moviemafia.xyz/",
+            imageUrl: "movie-mafia.png",
+        },
+        {
+            id: 2,
             name: "Sowinna Platform",
             description: "Web platform to track and manage evangelism contacts for religious organizations. Built during COVID-19 to streamline contact management and communication.",
             techStack: ["JavaScript", "TypeScript", "React", "Express.js", "PostgreSQL"],
             github: "https://github.com/charles-ejedawe/sowinna",
             demo: "https://sowinna.com/",
-            imageUrl: "https://via.placeholder.com/400x300?text=Sowinna+Platform"
+            imageUrl: "sowinna-platform.png"
         },
         {
-            id: 2,
+            id: 3,
             name: "ADRobot Monitor",
             description: "Web platform to track uptime status of custom advert monitoring servers. Provides real-time notifications when servers go down.",
             techStack: ["TypeScript", "React", "Next.js", "Node.js", "Azure"],
             github: "https://github.com/charles-ejedawe/adrobot-monitor",
             demo: "https://admonitor.kaplaas.com/",
-            imageUrl: "https://via.placeholder.com/400x300?text=ADRobot+Monitor"
+            imageUrl: "adrobot-monitor.png"
         }
     ],
 

@@ -52,7 +52,7 @@ export default function ProContact({ data }) {
               </span>
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-12">
               <div>
                 <p className="text-[#94a3b8] text-lg mb-12 max-w-md font-sans">
                   Available for select technical leadership roles and
@@ -82,72 +82,72 @@ export default function ProContact({ data }) {
                   </div>
                 </div>
               </div>
-              <div className="bg-[#141b24] border border-[#1e293b] transition-all duration-300 hover:border-[#4edea3]/40 relative overflow-hidden p-10 shadow-2xl">
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#4edea3]/20 to-transparent"></div>
-                <form onSubmit={handleSubmit} className="space-y-8">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-mono uppercase tracking-widest font-bold text-[#4edea3]/70">
-                      NAME_INPUT
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full bg-[#0a0f16] border border-[#1e293b] focus:ring-1 focus:ring-[#4edea3]/30 focus:border-[#4edea3] transition-all px-4 py-3 text-[#e2e8f0] placeholder:text-[#94a3b8]/30 font-mono text-sm"
-                      placeholder="ID_USER"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-mono uppercase tracking-widest font-bold text-[#4edea3]/70">
-                      EMAIL_INPUT
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full bg-[#0a0f16] border border-[#1e293b] focus:ring-1 focus:ring-[#4edea3]/30 focus:border-[#4edea3] transition-all px-4 py-3 text-[#e2e8f0] placeholder:text-[#94a3b8]/30 font-mono text-sm"
-                      placeholder="USER@NODE.COM"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-mono uppercase tracking-widest font-bold text-[#4edea3]/70">
-                      MESSAGE_BUFFER
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows="4"
-                      className="w-full bg-[#0a0f16] border border-[#1e293b] focus:ring-1 focus:ring-[#4edea3]/30 focus:border-[#4edea3] transition-all px-4 py-3 text-[#e2e8f0] placeholder:text-[#94a3b8]/30 font-mono text-sm"
-                      placeholder="DESCRIBE_PROJECT..."
-                    ></textarea>
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-[#4edea3] text-[#0a0f16] py-4 font-mono font-bold text-xs uppercase tracking-[0.2em] hover:bg-white transition-all shadow-[0_0_20px_rgba(78,222,163,0.2)] disabled:opacity-50"
-                  >
-                    {loading ? "SENDING..." : "EXECUTE_SEND"}
-                  </button>
-                  {status && (
-                    <p
-                      className={`text-center text-sm font-semibold ${
-                        status.includes("successfully")
-                          ? "text-[#4edea3]"
-                          : "text-red-400"
-                      }`}
-                    >
-                      {status}
-                    </p>
-                  )}
-                </form>
-              </div>
             </div>
+          </div>
+          <div className="bg-[#141b24] border border-[#1e293b] transition-all duration-300 hover:border-[#4edea3]/40 relative overflow-hidden p-10 shadow-2xl">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#4edea3]/20 to-transparent"></div>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="space-y-2">
+                <label className="text-[10px] font-mono uppercase tracking-widest font-bold text-[#4edea3]/70">
+                  NAME_INPUT
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-[#0a0f16] border border-[#1e293b] focus:ring-1 focus:ring-[#4edea3]/30 focus:border-[#4edea3] transition-all px-4 py-3 text-[#e2e8f0] placeholder:text-[#94a3b8]/30 font-mono text-sm"
+                  placeholder="ID_USER"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-mono uppercase tracking-widest font-bold text-[#4edea3]/70">
+                  EMAIL_INPUT
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-[#0a0f16] border border-[#1e293b] focus:ring-1 focus:ring-[#4edea3]/30 focus:border-[#4edea3] transition-all px-4 py-3 text-[#e2e8f0] placeholder:text-[#94a3b8]/30 font-mono text-sm"
+                  placeholder="USER@NODE.COM"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-mono uppercase tracking-widest font-bold text-[#4edea3]/70">
+                  MESSAGE_BUFFER
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows="4"
+                  className="w-full bg-[#0a0f16] border border-[#1e293b] focus:ring-1 focus:ring-[#4edea3]/30 focus:border-[#4edea3] transition-all px-4 py-3 text-[#e2e8f0] placeholder:text-[#94a3b8]/30 font-mono text-sm"
+                  placeholder="DESCRIBE_PROJECT..."
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-[#4edea3] text-[#0a0f16] py-4 font-mono font-bold text-xs uppercase tracking-[0.2em] hover:bg-white transition-all shadow-[0_0_20px_rgba(78,222,163,0.2)] disabled:opacity-50"
+              >
+                {loading ? "SENDING..." : "EXECUTE_SEND"}
+              </button>
+              {status && (
+                <p
+                  className={`text-center text-sm font-semibold ${
+                    status.includes("successfully")
+                      ? "text-[#4edea3]"
+                      : "text-red-400"
+                  }`}
+                >
+                  {status}
+                </p>
+              )}
+            </form>
           </div>
         </div>
       </div>

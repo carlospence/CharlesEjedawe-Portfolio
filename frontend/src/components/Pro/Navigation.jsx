@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function ProNavigation() {
+export default function ProNavigation({ data }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
 
@@ -44,7 +44,14 @@ export default function ProNavigation() {
       <div className="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
         <div className="text-xl font-bold tracking-tighter text-white font-sans flex items-center gap-2">
           <span className="w-2 h-2 bg-[#4edea3] rounded-full"></span>
-          ALEX CHEN
+          {data.name.split(" ").map((part, index) => (
+            <span
+              key={index}
+              className="bg-clip-text text-white text-transparent bg-gradient-to-r from-[#4edea3] to-[#94a3b8]"
+            >
+              {part}
+            </span>
+          ))}
         </div>
 
         {/* Desktop Menu */}

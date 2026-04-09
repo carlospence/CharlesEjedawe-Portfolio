@@ -10,7 +10,7 @@ export default function Archive({ data }) {
         <div className="lg:col-span-4">
           <h2 className="font-sans text-3xl font-bold tracking-tight mb-8 text-white flex items-center gap-4">
             <span className="text-[#4edea3] font-mono text-xl">03.</span>{" "}
-            ARCHIVE
+            EXPERIENCE_EDUCATION
           </h2>
           <p className="text-[#94a3b8] leading-relaxed font-sans italic border-l border-[#4edea3]/30 pl-6">
             Professional trajectory defined by technical leadership and
