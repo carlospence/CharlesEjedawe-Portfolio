@@ -13,6 +13,12 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+
+// Health check
+app.get('/', (req, res) => {
+    res.json({ status: 'Welcome to Portfolio API' });
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
     res.json({ status: 'API is running' });
