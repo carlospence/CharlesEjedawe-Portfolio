@@ -362,12 +362,12 @@ app.get('/health', (req, res) => {
 //     console.log(`✓ API available at http://localhost:${PORT}`);
 // });
 
-if (process.env.NODE_ENV !== "production") {
-    const PORT = 3000;
-    app.listen(PORT, () => {
-        console.log(`Server running on http://localhost:${PORT}`);
-    });
-}
+// if (process.env.NODE_ENV !== "production") {
+//     const PORT = 3000;
+//     app.listen(PORT, () => {
+//         console.log(`Server running on http://localhost:${PORT}`);
+//     });
+// }
 
 // ── Export for Vercel ───────────────────────────────────────
 export default app;
