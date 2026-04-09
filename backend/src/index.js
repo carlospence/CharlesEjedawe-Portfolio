@@ -1,0 +1,271 @@
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { PrismaClient } from '@prisma/client';
+
+dotenv.config();
+
+const app = express();
+const prisma = new PrismaClient();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Health check
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'API is running' });
+});
+
+// ==================== PROJECTS ====================
+app.get('/api/projects', async (req, res) => {
+    try {
+        const projects = await prisma.project.findMany({
+            orderBy: { createdAt: 'desc' }
+        });
+        res.json(projects);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/projects/:id', async (req, res) => {
+    try {
+        const project = await prisma.project.findUnique({
+            where: { id: parseInt(req.params.id) }
+        });
+        if (!project) return res.status(404).json({ error: 'Project not found' });
+        res.json(project);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post('/api/projects', async (req, res) => {
+    try {
+        const project = await prisma.project.create({
+            data: req.body
+        });
+        res.status(201).json(project);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+app.put('/api/projects/:id', async (req, res) => {
+    try {
+        const project = await prisma.project.update({
+            where: { id: parseInt(req.params.id) },
+            data: req.body
+        });
+        res.json(project);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+app.delete('/api/projects/:id', async (req, res) => {
+    try {
+        await prisma.project.delete({
+            where: { id: parseInt(req.params.id) }
+        });
+        res.json({ message: 'Project deleted' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+// ==================== SKILLS ====================
+app.get('/api/skills', async (req, res) => {
+    try {
+        const skills = await prisma.skill.findMany({
+            orderBy: { category: 'asc' }
+        });
+
+        // Group by category
+        const grouped = skills.reduce((acc, skill) => {
+            if (!acc[skill.category]) acc[skill.category] = [];
+            acc[skill.category].push(skill.name);
+            return acc;
+        }, {});
+
+        res.json(grouped);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/skills/:id', async (req, res) => {
+    try {
+        const skill = await prisma.skill.findUnique({
+            where: { id: parseInt(req.params.id) }
+        });
+        if (!skill) return res.status(404).json({ error: 'Skill not found' });
+        res.json(skill);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post('/api/skills', async (req, res) => {
+    try {
+        const skill = await prisma.skill.create({
+            data: req.body
+        });
+        res.status(201).json(skill);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+app.put('/api/skills/:id', async (req, res) => {
+    try {
+        const skill = await prisma.skill.update({
+            where: { id: parseInt(req.params.id) },
+            data: req.body
+        });
+        res.json(skill);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+app.delete('/api/skills/:id', async (req, res) => {
+    try {
+        await prisma.skill.delete({
+            where: { id: parseInt(req.params.id) }
+        });
+        res.json({ message: 'Skill deleted' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+// ==================== EXPERIENCE ====================
+app.get('/api/experience', async (req, res) => {
+    try {
+        const experience = await prisma.experience.findMany({
+            orderBy: { startDate: 'desc' }
+        });
+        res.json(experience);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/experience/:id', async (req, res) => {
+    try {
+        const exp = await prisma.experience.findUnique({
+            where: { id: parseInt(req.params.id) }
+        });
+        if (!exp) return res.status(404).json({ error: 'Experience not found' });
+        res.json(exp);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post('/api/experience', async (req, res) => {
+    try {
+        const exp = await prisma.experience.create({
+            data: {
+                ...req.body,
+                startDate: new Date(req.body.startDate),
+                endDate: req.body.endDate ? new Date(req.body.endDate) : null
+            }
+        });
+        res.status(201).json(exp);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+app.put('/api/experience/:id', async (req, res) => {
+    try {
+        const exp = await prisma.experience.update({
+            where: { id: parseInt(req.params.id) },
+            data: {
+                ...req.body,
+                startDate: req.body.startDate ? new Date(req.body.startDate) : undefined,
+                endDate: req.body.endDate ? new Date(req.body.endDate) : null
+            }
+        });
+        res.json(exp);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+app.delete('/api/experience/:id', async (req, res) => {
+    try {
+        await prisma.experience.delete({
+            where: { id: parseInt(req.params.id) }
+        });
+        res.json({ message: 'Experience deleted' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+// ==================== CONTACTS ====================
+app.get('/api/contacts', async (req, res) => {
+    try {
+        const contacts = await prisma.contact.findMany({
+            orderBy: { createdAt: 'desc' }
+        });
+        res.json(contacts);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/contacts/:id', async (req, res) => {
+    try {
+        const contact = await prisma.contact.findUnique({
+            where: { id: parseInt(req.params.id) }
+        });
+        if (!contact) return res.status(404).json({ error: 'Contact not found' });
+        res.json(contact);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post('/api/contact', async (req, res) => {
+    try {
+        const contact = await prisma.contact.create({
+            data: {
+                name: req.body.name,
+                email: req.body.email,
+                message: req.body.message
+            }
+        });
+        res.status(201).json({ message: 'Contact message received', contact });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+app.delete('/api/contacts/:id', async (req, res) => {
+    try {
+        await prisma.contact.delete({
+            where: { id: parseInt(req.params.id) }
+        });
+        res.json({ message: 'Contact deleted' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Something went wrong' });
+});
+
+// Start server
+app.listen(PORT, () => {
+    console.log(`✓ Server running on http://localhost:${PORT}`);
+    console.log(`✓ API available at http://localhost:${PORT}/api`);
+});
