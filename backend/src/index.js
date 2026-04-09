@@ -20,12 +20,12 @@ app.get('/', (req, res) => {
 });
 
 // Health check
-app.get('/api/health', (req, res) => {
+app.get('/health', (req, res) => {
     res.json({ status: 'API is running' });
 });
 
 // ==================== BIO ====================
-app.get('/api/bio', async (req, res) => {
+app.get('/bio', async (req, res) => {
     try {
         const bio = await prisma.bio.findMany({
             orderBy: { createdAt: 'desc' }
@@ -36,7 +36,7 @@ app.get('/api/bio', async (req, res) => {
     }
 });
 
-app.get('/api/bio/first', async (req, res) => {
+app.get('/bio/first', async (req, res) => {
     try {
         const bio = await prisma.bio.findFirst({
             orderBy: { createdAt: 'desc' }
@@ -48,7 +48,7 @@ app.get('/api/bio/first', async (req, res) => {
     }
 });
 
-app.post('/api/bio', async (req, res) => {
+app.post('/bio', async (req, res) => {
     try {
         const bio = await prisma.bio.create({
             data: req.body
@@ -59,7 +59,7 @@ app.post('/api/bio', async (req, res) => {
     }
 });
 
-app.put('/api/bio/:id', async (req, res) => {
+app.put('/bio/:id', async (req, res) => {
     try {
         const bio = await prisma.bio.update({
             where: { id: parseInt(req.params.id) },
@@ -71,7 +71,7 @@ app.put('/api/bio/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/bio/:id', async (req, res) => {
+app.delete('/bio/:id', async (req, res) => {
     try {
         await prisma.bio.delete({
             where: { id: parseInt(req.params.id) }
@@ -83,7 +83,7 @@ app.delete('/api/bio/:id', async (req, res) => {
 });
 
 // ==================== PROJECTS ====================
-app.get('/api/projects', async (req, res) => {
+app.get('/projects', async (req, res) => {
     try {
         const projects = await prisma.project.findMany({
             orderBy: { createdAt: 'desc' }
@@ -94,7 +94,7 @@ app.get('/api/projects', async (req, res) => {
     }
 });
 
-app.get('/api/projects/:id', async (req, res) => {
+app.get('/projects/:id', async (req, res) => {
     try {
         const project = await prisma.project.findUnique({
             where: { id: parseInt(req.params.id) }
@@ -106,7 +106,7 @@ app.get('/api/projects/:id', async (req, res) => {
     }
 });
 
-app.post('/api/projects', async (req, res) => {
+app.post('/projects', async (req, res) => {
     try {
         const project = await prisma.project.create({
             data: req.body
@@ -117,7 +117,7 @@ app.post('/api/projects', async (req, res) => {
     }
 });
 
-app.put('/api/projects/:id', async (req, res) => {
+app.put('/projects/:id', async (req, res) => {
     try {
         const project = await prisma.project.update({
             where: { id: parseInt(req.params.id) },
@@ -129,7 +129,7 @@ app.put('/api/projects/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/projects/:id', async (req, res) => {
+app.delete('/projects/:id', async (req, res) => {
     try {
         await prisma.project.delete({
             where: { id: parseInt(req.params.id) }
@@ -141,7 +141,7 @@ app.delete('/api/projects/:id', async (req, res) => {
 });
 
 // ==================== SKILLS ====================
-app.get('/api/skills', async (req, res) => {
+app.get('/skills', async (req, res) => {
     try {
         const skills = await prisma.skill.findMany({
             orderBy: { category: 'asc' }
@@ -160,7 +160,7 @@ app.get('/api/skills', async (req, res) => {
     }
 });
 
-app.get('/api/skills/:id', async (req, res) => {
+app.get('/skills/:id', async (req, res) => {
     try {
         const skill = await prisma.skill.findUnique({
             where: { id: parseInt(req.params.id) }
@@ -172,7 +172,7 @@ app.get('/api/skills/:id', async (req, res) => {
     }
 });
 
-app.post('/api/skills', async (req, res) => {
+app.post('/skills', async (req, res) => {
     try {
         const skill = await prisma.skill.create({
             data: req.body
@@ -183,7 +183,7 @@ app.post('/api/skills', async (req, res) => {
     }
 });
 
-app.put('/api/skills/:id', async (req, res) => {
+app.put('/skills/:id', async (req, res) => {
     try {
         const skill = await prisma.skill.update({
             where: { id: parseInt(req.params.id) },
@@ -195,7 +195,7 @@ app.put('/api/skills/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/skills/:id', async (req, res) => {
+app.delete('/skills/:id', async (req, res) => {
     try {
         await prisma.skill.delete({
             where: { id: parseInt(req.params.id) }
@@ -207,7 +207,7 @@ app.delete('/api/skills/:id', async (req, res) => {
 });
 
 // ==================== EXPERIENCE ====================
-app.get('/api/experience', async (req, res) => {
+app.get('/experience', async (req, res) => {
     try {
         const experience = await prisma.experience.findMany({
             orderBy: { startDate: 'desc' }
@@ -218,7 +218,7 @@ app.get('/api/experience', async (req, res) => {
     }
 });
 
-app.get('/api/experience/:id', async (req, res) => {
+app.get('/experience/:id', async (req, res) => {
     try {
         const exp = await prisma.experience.findUnique({
             where: { id: parseInt(req.params.id) }
@@ -230,7 +230,7 @@ app.get('/api/experience/:id', async (req, res) => {
     }
 });
 
-app.post('/api/experience', async (req, res) => {
+app.post('/experience', async (req, res) => {
     try {
         const exp = await prisma.experience.create({
             data: {
@@ -245,7 +245,7 @@ app.post('/api/experience', async (req, res) => {
     }
 });
 
-app.put('/api/experience/:id', async (req, res) => {
+app.put('/experience/:id', async (req, res) => {
     try {
         const exp = await prisma.experience.update({
             where: { id: parseInt(req.params.id) },
@@ -261,7 +261,7 @@ app.put('/api/experience/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/experience/:id', async (req, res) => {
+app.delete('/experience/:id', async (req, res) => {
     try {
         await prisma.experience.delete({
             where: { id: parseInt(req.params.id) }
@@ -273,7 +273,7 @@ app.delete('/api/experience/:id', async (req, res) => {
 });
 
 // ==================== CONTACTS ====================
-app.get('/api/contacts', async (req, res) => {
+app.get('/contacts', async (req, res) => {
     try {
         const contacts = await prisma.contact.findMany({
             orderBy: { createdAt: 'desc' }
@@ -284,7 +284,7 @@ app.get('/api/contacts', async (req, res) => {
     }
 });
 
-app.get('/api/contacts/:id', async (req, res) => {
+app.get('/contacts/:id', async (req, res) => {
     try {
         const contact = await prisma.contact.findUnique({
             where: { id: parseInt(req.params.id) }
@@ -296,7 +296,7 @@ app.get('/api/contacts/:id', async (req, res) => {
     }
 });
 
-app.get('/api/contact', async (req, res) => {
+app.get('/contact', async (req, res) => {
     try {
         const contact = await prisma.contact.findFirst({
             orderBy: { createdAt: 'desc' }
@@ -308,7 +308,7 @@ app.get('/api/contact', async (req, res) => {
     }
 });
 
-app.post('/api/contact', async (req, res) => {
+app.post('/contact', async (req, res) => {
     try {
         const contact = await prisma.contact.create({
             data: {
@@ -324,7 +324,7 @@ app.post('/api/contact', async (req, res) => {
     }
 });
 
-app.delete('/api/contacts/:id', async (req, res) => {
+app.delete('/contacts/:id', async (req, res) => {
     try {
         await prisma.contact.delete({
             where: { id: parseInt(req.params.id) }
@@ -344,5 +344,5 @@ app.use((err, req, res, next) => {
 // Start server
 app.listen(PORT, () => {
     console.log(`✓ Server running on http://localhost:${PORT}`);
-    console.log(`✓ API available at http://localhost:${PORT}/api`);
+    console.log(`✓ API available at http://localhost:${PORT}`);
 });
