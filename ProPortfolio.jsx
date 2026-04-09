@@ -252,7 +252,7 @@ export default function ProPortfolio() {
             </div>
             <div className="h-px flex-grow mx-8 bg-slate-800 hidden md:block"></div>
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-400 opacity-60">
-              BUILD_LOG_2024
+              BUILD_LOG_2026
             </span>
           </div>
 

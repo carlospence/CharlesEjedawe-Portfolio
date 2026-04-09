@@ -19,7 +19,7 @@ export default function DeployedWorks({ data }) {
           </div>
           <div className="h-[1px] flex-grow mx-8 bg-[#1e293b] hidden md:block"></div>
           <span className="font-mono text-xs uppercase tracking-widest text-[#4edea3] opacity-60">
-            BUILD_LOG_2024
+            BUILD_LOG_2026
           </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
