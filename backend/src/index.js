@@ -14,10 +14,25 @@ app.use(cors());
 app.use(express.json());
 
 
-// Health check
-app.get('/', (req, res) => {
-    res.json({ status: 'Welcome to Portfolio API' });
+// ── Routes ─────────────────────────────────────────────────
+
+app.get("/", async (req, res) => {
+
+    try {
+
+        res.json({ message: `Welcome to the Charles Ejedawe Portfolio` });
+        // res.json(products);
+    } catch (err) {
+        console.error(err);
+        res.json({ message: `Welcome to the Charles Ejedawe Portfolio` });
+    }
+
 });
+
+// // Health check
+// app.get('/', (req, res) => {
+//     res.json({ status: 'Welcome to Portfolio API' });
+// });
 
 // Health check
 app.get('/health', (req, res) => {
