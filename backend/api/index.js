@@ -12,7 +12,11 @@ if (!process.env.DATABASE_URL) {
 
 
 const app = express();
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
+// ✅ Singleton pattern — prevents "too many Prisma clients" on hot reloads
+const globalForPrisma = global;
+const prisma = globalForPrisma.prisma ?? new PrismaClient();
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 const PORT = process.env.PORT || 3000;
 
 // Middleware
